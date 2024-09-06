@@ -1,0 +1,38 @@
+<section class="bg-main-light p-2 my-5 w-75 mx-auto rounded shadow">
+    <h1 class="h2 text-main" >sign in:</h1>
+
+    <form [formGroup]="loginForms" (ngSubmit)="loginSubmit()">
+        <div class="my-3">
+            <label for="email">Email:</label>
+            <input formControlName="email" type="email" id="email" class="form-control">
+            @if (loginForms.get('email')?.errors && (loginForms.get('email')?.touched|| loginForms.get('email')?.dirty)) {
+                <p class=" alert alert-danger mt-2">Your Email is Invalid</p>
+            }
+        </div>
+        <div class="my-3">
+            <label for="password">Password:</label>
+            <input formControlName="password" type="password" id="password" class="form-control">
+            @if (loginForms.get('password')?.errors && (loginForms.get('password')?.touched || loginForms.get('password')?.dirty)) {
+                <p class="alert alert-danger mt-2">Your Password is Invalid</p>
+            }
+            
+        </div>
+       <div class="d-flex justify-content-end align-items-center gap-3">
+
+        <a class="link-success cr" routerLink="/forgot">Forget Password</a>
+
+        <button class="btn-main my-3" [disabled]="loginForms.invalid || isLoading">login 
+            @if (isLoading) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+              }
+        </button>
+       </div>
+        @if(msgError){
+            <p class="text-center text-main mt-3">{{ msgError }}</p>
+        }
+        @if(msgSuccess){
+            <p class="text-success h5 ">Success</p>
+        }
+    </form>
+
+</section>

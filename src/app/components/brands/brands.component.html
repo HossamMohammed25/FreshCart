@@ -1,0 +1,47 @@
+<section>
+    <h1 class="text-center text-main fw-semibold">All Brands</h1>
+
+    <div class="row g-3 my-5">
+     @for (brand of brandsList; track brand._id) {
+        <div class="col-md-3">
+            <div class="card rounded-2 product" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(brand.image, brand.name,brand.slug)">
+                <img [src]="brand.image" class="w-100" [alt]="brand.name">
+                <div class="card-body">
+                    <p class="text-center">{{brand.name}}</p>
+                </div>
+            </div>
+        </div>
+     
+    
+     }
+     @if (isClicked == true) {
+        <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-between align-items-center p-3">
+                 <div>
+                    <h4 class="text-main fw-semibold">{{name}}</h4>
+                    <p>{{slug}}</p>
+                 </div>
+                 <div>
+
+                     <img [src]="imgSrc" class="w-75 ms-auto" [alt]="name">
+                 </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    }
+    </div>
+  
+
+
+  
+
+</section>

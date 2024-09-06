@@ -1,0 +1,19 @@
+{
+    "navbar":{
+        "home":"الرئيسية",
+        "product":"المنتجات",
+        "categories":"الاقسام",
+        "brands":"العلامات التجارية",
+        "signout": "تسجيل   خروج",
+        "lang": "غ"
+    },
+
+   "home":{
+        "categories":"الاقسام المشهورة",
+        "products": "المنتجات المشهورة",
+        "searchPlaceholder": "ابحث بالاسم...",
+        "category": "الاقسام",
+        "name": "الاسم"
+        
+    }
+}

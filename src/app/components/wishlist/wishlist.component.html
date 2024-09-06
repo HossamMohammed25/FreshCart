@@ -1,0 +1,42 @@
+
+
+
+@if(wishListDetails?.data?.length){
+    <section class="bg-main-light my-3 rounded-3 shadow p-5">
+        <h2 class="fw-semibold text-main">My wish List</h2>
+
+
+        @for (wishlist of wishListDetails?.data; track wishlist.id) {
+        <div class="row my-3 border-bottom py-2">
+            <div class="col-md-2">
+                <img [src]="wishlist.imageCover" class="w-100" [alt]="wishlist.title">
+    
+                </div>
+                <div class="col-md-10 d-flex align-items-center justify-content-between ">
+                    <div>
+                        <h5 class="fw-semibold">{{wishlist.title}}</h5>
+                    <p class="text-main my-1">{{wishlist.price | currency:'GBP'}}</p>
+                    <span class="cr text-danger" (click)="deleteProduct(wishlist.id)"><i class="fa-solid fa-trash-can"></i> Remove </span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-outline-success" (click)="addCart(wishlist.id)">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+    
+</section>
+}@else {
+    <section>
+
+        <div class="d-flex align-items-end justify-content-around gap-3 my-3">  
+          <img src="./assets/images/empty_wishlist.png"  class="w-25" alt="empty wishlist">
+          <a class="link-primary cr" routerLink="/home">Go To Shop <i class="fa-solid fa-angles-right"></i></a>
+        </div>
+          </section>
+}
+
+
+

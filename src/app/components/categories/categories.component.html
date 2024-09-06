@@ -1,0 +1,18 @@
+<section>
+
+    <div class="row g-3 my-3">
+      @for (category of categoriesItems; track category._id) {
+        <div class="col-md-4">
+            <div class="product rounded-2 card ">
+                <div class="card-img">
+                <img [src]="category.image" class="w-100" height="350px" [alt]="category.name">
+                </div>
+                <div class="card-body">
+                    <h2 class="text-center h3 text-success fw-semibold">{{category.name}}</h2>
+
+                </div>
+            </div>
+        </div>
+      }
+    </div>
+</section>

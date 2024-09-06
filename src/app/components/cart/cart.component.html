@@ -1,0 +1,43 @@
+@if (cartDetails?.products?.length) {
+    <section class="bg-main-light my-3 rounded-3 shadow p-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Shop Cart:</h2>
+            <button class="btn btn-outline-danger" (click)="clearItems()">Clear Cart</button>
+        </div>
+    <p class="text-main">Total Cart Price : {{cartDetails?.totalCartPrice | currency :'GBP'}}</p>
+    @for (item of cartDetails?.products; track item.product.id) {
+        <div class="row my-3 border-bottom py-2">
+            <div class="col-md-1">
+                <div>
+                    <img [src]="item.product.imageCover" class="w-100" [alt]="item.product.title">
+                </div>
+            </div>
+            <div class="col-md-11 d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>{{item.product.title}}</h5>
+                    <p class="text-main my-1">price : {{item.price}}</p>
+                    <span class="cr text-danger" (click)="deleteItem(item.product.id)"><i class="fa-solid fa-trash-can"></i> Remove </span>
+    
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span (click)="updateCount(item.product.id,item.count +1 )" ><i class="fa-regular fa-square-plus text-main fa-2xl cr"></i></span>
+                    <span>{{item.count}}</span>
+                    <span (click)="updateCount(item.product.id,item.count -1 )"  ><i class="fa-regular fa-square-minus text-main fa-2xl cr"></i></span>
+                </div>
+            </div>
+    
+        </div>    
+    }
+        <button class="btn btn-primary" [routerLink]="['/orders' , cartDetails?._id]">Check Out</button>
+    </section>
+}@else{
+    <section class="bg-main-light my-3 rounded-3 shadow p-4">
+
+  <div class="d-flex align-items-center gap-3">  
+    <h2 class="text-main">Your cart is empty</h2>
+    <a class="link-primary cr" routerLink="/home">Go to Shop <i class="fa-solid fa-angles-right"></i></a>
+  </div>
+    <img src="./assets/images/kettle-desaturated._CB445243794_.svg" class="w-50 my-3" alt="empty cart">
+    </section>
+
+}
