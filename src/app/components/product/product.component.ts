@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit , OnDestroy {
 
 
 ngOnInit(): void {
-  // all categories
+  
  
 
 // products
@@ -45,6 +45,7 @@ ngOnInit(): void {
       next:(res)=>{
         // console.log(res.data);
         this.products = res.data;
+         this.changeHeart = res.data
         if(localStorage.getItem('heart') !== null){
 
           this.changeHeart = localStorage.getItem('heart')
