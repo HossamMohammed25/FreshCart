@@ -10,7 +10,7 @@ export class OrdersService {
 
   constructor(private readonly _HttpClient:HttpClient) { }
   checkout(id:string|null ,shippingDetails:object ):Observable<any>{
-    return this._HttpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${id}?url=${environment.localhost}`, {
+    return this._HttpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${id}?url=${window.location.origin}`, {
       "shippingAddress":shippingDetails
     }
    
