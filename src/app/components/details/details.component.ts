@@ -14,6 +14,8 @@ import { Iproduct } from '../../core/interfaces/iproduct';
 export class DetailsComponent implements OnInit , OnDestroy {
  private readonly  _ActivatedRoute=inject(ActivatedRoute)
  private readonly  _ProductsService=inject(ProductsService)
+ private readonly _CartService = inject(CartService)
+ private readonly _ToastrService = inject(ToastrService)
  productIDSub!:Subscription;
  productSub!:Subscription;
   productDetails: Iproduct | null =null;
@@ -33,9 +35,25 @@ export class DetailsComponent implements OnInit , OnDestroy {
         }
       })
   }
- 
+
+   addToCart(id:string):void{
+    this.cartSub= this._CartService.addProductToCart(id).subscribe({
+      next:(res)=>{
+        // console.log(res);
+  
+        
+        this._ToastrService.success(res.message , 'Fresh Cart')
+        this._CartService.cartNumber.set(res.numOfCartItems)
+        
+      }
+    })
+  }
+  
+  
   ngOnDestroy(): void {
 this.productIDSub?.unsubscribe();
 this.productSub?.unsubscribe();
+this.cartSub?.unsubscribe();
+
   }
 }
